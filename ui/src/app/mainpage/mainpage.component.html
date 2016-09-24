@@ -1,0 +1,36 @@
+<div layout="column" layout-fill class = "form" >
+  <md-toolbar layout = "row">
+    <div layout = "row" flex>
+      <span class="md-display-3">Flight Reservation</span>
+
+      <!-- fill up the space between left and right area -->
+      <span flex></span>
+    </div>
+    <md-button class="md-raised md-primary" ui-sref="register" >
+      Create a new account
+    </md-button>
+    <md-button class="md-raised md-primary" >
+      login
+    </md-button>
+  </md-toolbar>
+  <md-toolbar layout="row" class="md-hue-3">
+    <div class="md-toolbar-tools">
+      <span>Flight list</span>
+    </div>
+  </md-toolbar>
+
+  <md-content>
+      <md-list flex>
+        <md-subheader class="md-no-sticky">flight date</md-subheader>
+          <md-list-item class="md-3-line" ng-click="null" >
+            <div class="md-list-item-text" layout="column">
+              <h3>{{flight.origin}}</h3>
+              <h4>{{flight.destination}}</h4>
+              <p>{{flight.flightTime}}</p>
+            </div>
+          </md-list-item>
+      </md-list flex>
+  </md-content>
+
+  <flight-map></flight-map>
+</div>
