@@ -2,6 +2,7 @@ import flightMap from './map/map.module'
 import apiUrl from './api.url'
 import register from './register/register.module.js'
 import mainpage from './mainpage/mainpage.module.js'
+import login from './login/login.module.js'
 
 export default
   angular
@@ -13,7 +14,8 @@ export default
       'ui.router',
       mainpage,
       register,
-      flightMap
+      flightMap,
+      login
     ])
     .constant('apiUrl', apiUrl)
     .name

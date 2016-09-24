@@ -1,0 +1,24 @@
+<div layout="column" layout-fill class = "form" >
+  <md-toolbar layout = "row">
+    <div layout = "row" flex>
+      <span class="md-display-3">Flight Reservation </span>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+  <md-content layout="column" class ="md-padding">
+    <h3 layout="column" class="md-subhead">Enter your username</h3>
+    <md-input-container class="input-text">
+      <label>Username</label>
+      <input name="Username" ng-model="loginCtrl.user.username" required md-maxlength="100" minlength="1" class="input-text">
+    </md-input-container>
+    <h3 layout="column" class="md-subhead">Enter your password</h3>
+    <md-input-container class="input-text">
+      <label>Password</label>
+      <textarea name="password" ng-model="loginCtrl.user.password" required md-maxlength="100" minlength="1" class="input-text"></textarea>
+    </md-input-container>
+
+    <md-button class="md-raised md-primary" ng-click='loginCtrl.login()'>
+      submit
+    </md-button>
+  </md-content>
+</div>
