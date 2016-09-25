@@ -11,9 +11,9 @@ export default class LoginController {
         $log.debug(valid.data.password)
         $log.debug(ctrl.user.password)
         if (bcrypt.compareSync(ctrl.user.password, valid.data.password)) {
-          userService.user = ctrl.user
+          userService.user = valid.data
           $log.debug(userService.user)
-          $state.go('home')
+          $state.go('user')
         }
         $log.debug(userService.user)
       })

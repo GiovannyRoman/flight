@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cooksys.entity.Route;
 import com.cooksys.entity.User;
 import com.cooksys.repository.UserRepository;
 import com.cooksys.service.UserService;
@@ -34,6 +35,20 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public Route saveFlight(String username, Route route) {
+		List<User>users = this.repo.findAll();
+		User currentUser = null;
+		for(User us : users) {
+			if(username.equals(us.getUsername())){
+				currentUser = us;
+			}
+		}
+		currentUser.getRoutes().add(route);
+		this.repo.save(currentUser);
+		return route;
 	}
 
 }

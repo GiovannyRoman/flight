@@ -10,5 +10,8 @@ export default class UserService {
     service.login = function (username) {
       return this.$http.get(apiUrl + '/users/' + username)
     }
+    this.getFlights = function () {
+      return this.$http.get(apiUrl + '/flights')
+    }
   }
 }

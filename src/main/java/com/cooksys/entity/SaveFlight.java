@@ -28,7 +28,7 @@ public class SaveFlight {
 
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
+	private Route route;
 
 	public String getOrigin() {
 		return origin;

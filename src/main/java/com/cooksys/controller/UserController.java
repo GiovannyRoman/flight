@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cooksys.entity.Route;
 import com.cooksys.entity.User;
 import com.cooksys.service.UserService;
 
@@ -34,6 +35,10 @@ public class UserController {
 		return this.userService.create(user);
 	}
 	
+	@RequestMapping(value ="/{username}/routes" ,method = RequestMethod.POST)
+	public Route saveFlight(@PathVariable String username,@RequestBody Route route){
+		return this.userService.saveFlight(username, route);
+	}
 	
 
 }

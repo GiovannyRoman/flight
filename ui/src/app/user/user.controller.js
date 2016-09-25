@@ -1,17 +1,17 @@
-export default class MainController {
+export default class UserController {
   /* @ngInject */
-  constructor ($log, mainPageService, $scope, $interval) {
-    $log.debug('mainController is a go.')
+  constructor ($log, $scope, $interval, userService) {
+    $log.debug('UserController is made')
     var ctrl = this
     ctrl.flights
     $scope.refresh = function () {
-      mainPageService.getFlights().then(function (flights) {
+      userService.getFlights().then(function (flights) {
         ctrl.flights = flights.data
       })
     }
     $scope.intervalPromise = $interval(function () {
       $scope.refresh()
-    }, 1000)
+    }, 2500)
     $scope.refresh()
   }
 }

@@ -1,0 +1,59 @@
+<div layout="column" layout-fill class = "form" >
+  <md-toolbar layout = "row">
+    <div layout = "row" flex>
+      <span class="md-display-3">Flight Reservation</span>
+
+      <!-- fill up the space between left and right area -->
+      <span flex></span>
+    </div>
+  </md-toolbar>
+
+  <md-toolbar layout="row" class="md-medium-tall">
+  <p>Search for flights</p>
+    <md-input-container md-no-float class="md-block">
+      <input ng-model="userCtrl.origin" placeholder="Origin">
+    </md-input-container>
+    <md-input-container md-no-float class="md-block">
+      <input ng-model="userCtrl.destination" placeholder="Destination">
+    </md-input-container>
+    <md-button class="md-raised md-primary">
+      search
+    </md-button>
+  </md-toolbar>
+
+  <md-toolbar layout="row" class="md-hue-3">
+    <div class="md-toolbar-tools">
+      <span>Flight list</span>
+    </div>
+  </md-toolbar>
+
+  <md-content>
+      <md-list flex>
+        <md-subheader class="md-no-sticky">Flights Currently Available</md-subheader>
+          <md-list-item class="md-3-line" ng-click="null" ng-repeat = "flight in userCtrl.flights" >
+            <div class="md-list-item-text" layout="column">
+              <h3>From : {{flight.origin}}</h3>
+              <h3>To : {{flight.destination}}</h3>
+              <p>Departing At : {{flight.offset}}:00</p>
+              <p>Estimated Air Time : {{flight.flightTime}} hour/s</p>
+            </div>
+          </md-list-item>
+      </md-list flex>
+  </md-content>
+  <md-toolbar layout="row" class="md-hue-3">
+    <div class="md-toolbar-tools">
+      <span>Previous Flights Taken</span>
+    </div>
+  </md-toolbar>
+  <md-content>
+      <md-list flex>
+          <md-list-item class="md-3-line" ng-click="null" ng-repeat = "route in userCtrl.user.routes" >
+            <div class="md-list-item-text" layout="column">
+              <h3>From : {{route.origin}}</h3>
+              <h3>To : {{route.destination}}</h3>
+              <p>Estimated Air Time : {{route.flightTime}} hour/s</p>
+            </div>
+          </md-list-item>
+      </md-list flex>
+  </md-content>
+</div>

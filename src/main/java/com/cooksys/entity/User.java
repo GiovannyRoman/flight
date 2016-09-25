@@ -18,8 +18,8 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	@OneToMany(mappedBy = "user" ,fetch=FetchType.EAGER)
-	private List<SaveFlight> itinerary;
+	@OneToMany(mappedBy = "owner" ,fetch=FetchType.EAGER)
+	private List<Route> routes;
 	
 	public long getId() {
 		return id;
@@ -39,4 +39,11 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public List<Route> getRoutes() {
+		return routes;
+	}
+	public void setRoutes(List<Route> routes) {
+		this.routes = routes;
+	}
+	
 }
