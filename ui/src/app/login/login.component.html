@@ -14,7 +14,7 @@
     <h3 layout="column" class="md-subhead">Enter your password</h3>
     <md-input-container class="input-text">
       <label>Password</label>
-      <textarea name="password" ng-model="loginCtrl.user.password" required md-maxlength="100" minlength="1" class="input-text"></textarea>
+      <input type="password" name="password" ng-model="loginCtrl.user.password" required md-maxlength="100" minlength="1" class="input-text"></input>
     </md-input-container>
 
     <md-button class="md-raised md-primary" ng-click='loginCtrl.login()'>

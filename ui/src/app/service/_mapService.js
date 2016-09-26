@@ -1,19 +1,11 @@
 import apiUrl from '../api.url'
 
-export default class UserService {
+export default class MapService {
   /* @ngInject */
   constructor ($http) {
-    var service = this
-    service.$http = $http
-    service.user
-    service.route
+    this.$http = $http
+    this.route
 
-    service.login = function (username) {
-      return this.$http.get(apiUrl + '/users/' + username)
-    }
-    this.getFlights = function () {
-      return this.$http.get(apiUrl + '/flights')
-    }
     this.getLocations = function () {
       return this.$http.get(apiUrl + '/location').then(result => result.data)
     }

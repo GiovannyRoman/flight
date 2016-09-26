@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cooksys.entity.Graph;
 import com.cooksys.entity.Location;
 import com.cooksys.service.LocationService;
 
@@ -35,5 +36,9 @@ public class LocationController {
 	{
 		return locationService.get(cityName);
 	}
-
+	
+	@RequestMapping("/mapping")
+	public Graph makeGraph(){
+		return locationService.makeGraph();
+	}
 }
