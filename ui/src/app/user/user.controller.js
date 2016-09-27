@@ -1,17 +1,19 @@
 
 export default class UserController {
   /* @ngInject */
-  constructor ($log, $scope, $interval, userService, $state) {
+  constructor ($log, $scope, $interval, userService, $state, $stateParams) {
     $log.debug('UserController is made')
     var ctrl = this
     ctrl.user
     $scope.getUser = function () {
-      ctrl.user = userService.user
+      userService.getUser($stateParams.username).then(function (user) {
+        ctrl.user = user.data
+      })
     }
 
     ctrl.setRoute = function (route) {
       userService.route = route
-      $state.go('map')
+      $state.go('map', {routeid: route.id})
     }
 
     ctrl.flights

@@ -1,11 +1,11 @@
 import loginApp from './login.component.js'
-import userService from '../service/userService.js'
+import loginService from '../service/loginService.js'
 
 export default
   angular
     .module('loginApp', [])
     .component('loginApp', loginApp)
-    .service('userService', userService)
+    .service('loginService', loginService)
     .config(['$stateProvider', function ($stateProvider) {
       $stateProvider
         .state('login', {

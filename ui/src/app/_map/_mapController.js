@@ -6,46 +6,50 @@ class MapController {
   markers = []
   paths = []
 
-  constructor (userService, $log, $scope) {
+  constructor (mapService, $log, $scope, $stateParams) {
     var ctrl = this
     let markers = []
+    ctrl.route
 
     $scope.getRoute = function () {
-      ctrl.route = userService.route
-      console.log(userService.route)
+      mapService.getRoute($stateParams.routeid).then(function (route) {
+        ctrl.route = route.data
+
+        mapService.getLocations().then(function (data) {
+          markers = data.data
+        })
+
+        markers.forEach(marker => ctrl.addMarker(marker.latitude, marker.longitude))
+        for (let i = 0; i < ctrl.route.flights.length; i++) {
+          let flight = ctrl.route.flights[i]
+          ctrl.getflightPath(flight.origin, flight.destination)
+        }
+      })
+    }
+    ctrl.getflightPath = function (origin, destination) {
+      mapService.getMarkerByCityName(origin).then(function (start) {
+        origin = start.data
+        mapService.getMarkerByCityName(destination).then(function (end) {
+          destination = end.data
+          ctrl.addPath(origin, destination, '#FF3388')
+        })
+      })
     }
 
-    $log.debug('MapController is made')
-
-    userService.getLocations().then(function (data) {
-      markers = data.data
-    })
-
-    markers.forEach(marker => this.addMarker(marker.latitude, marker.longitude))
-    let origin = ''
-    let destination = ''
-    for (let i = 0; i < ctrl.route.flights.length; i++) {
-      let flight = ctrl.route.flights[i]
-      origin = userService.getMarkerByCityName(flight.origin)
-      destination = userService.getMarkerByCityName(flight.destination)
-      this.addPath(origin, destination, '#FF3388')
-    }
     $scope.getRoute()
-  }
-
-  addPath (a, b, color) {
-    this.paths.push({
-      path: `[[${a.latitude}, ${a.longitude}], [${b.latitude}, ${b.longitude}]]`,
-      strokeColor: color,
-      strokeOpacity: 1.0,
-      strokeWeight: 3,
-      geodesic: true
-    })
-  }
-
-  addMarker ({ latitude, longitude }) {
-    this.markers.push({
-      position: `[${latitude}, ${longitude}]`
-    })
+    ctrl.addPath = function (a, b, color) {
+      ctrl.paths.push({
+        path: `[[${a.latitude}, ${a.longitude}], [${b.latitude}, ${b.longitude}]]`,
+        strokeColor: color,
+        strokeOpacity: 1.0,
+        strokeWeight: 3,
+        geodesic: true
+      })
+    }
+    ctrl.addMarker = function ({ latitude, longitude }) {
+      this.markers.push({
+        position: `[${latitude}, ${longitude}]`
+      })
+    }
   }
 }

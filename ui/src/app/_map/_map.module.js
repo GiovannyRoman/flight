@@ -1,15 +1,15 @@
 import mapApp from './_map.component.js'
-import userService from '../service/userService.js'
+import mapService from '../service/_mapService.js'
 
 export default
   angular
     .module('mapApp', ['ngMap'])
     .component('mapApp', mapApp)
-    .service('userService', userService)
+    .service('mapService', mapService)
     .config(['$stateProvider', function ($stateProvider) {
       $stateProvider
         .state('map', {
-          url: '/map',
+          url: '/map/:routeid',
           component: 'mapApp'
         })
     }])

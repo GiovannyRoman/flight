@@ -9,7 +9,7 @@ export default
     .config(['$stateProvider', function ($stateProvider) {
       $stateProvider
         .state('user', {
-          url: '/user',
+          url: '/user/:username',
           component: 'userApp'
         })
     }])

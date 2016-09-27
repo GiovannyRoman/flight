@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cooksys.entity.Graph;
+import com.cooksys.entity.CityFlights;
 import com.cooksys.entity.Location;
 import com.cooksys.pojo.Flight;
 import com.cooksys.repository.LocationRepository;
@@ -32,10 +32,11 @@ public class LocationService {
 		return repo.findByCity(name);
 	}
 
-	public Graph makeGraph() {
-		Graph graph = new Graph();
+
+	public List<CityFlights> makeMap() {
 		List<Location> locations = this.repo.findAll();
 		List<Flight> flights = this.flightService.getDailyFlightList();
-		return graph.makeGraph(locations,flights);
+		CityFlights con = new CityFlights();
+		return con.makeRoutes(locations, flights);
 	}
 }
