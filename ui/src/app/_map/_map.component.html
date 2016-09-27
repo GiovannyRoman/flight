@@ -22,4 +22,21 @@
   	  </shape>
   </ng-map>
   </div>
+  <md-content>
+      <md-list flex>
+        <md-subheader class="md-no-sticky">list of connected flights from {{$mapCtrl.route.origin}} to {{$mapCtrl.route.destination}}</md-subheader>
+          <md-divider ></md-divider>
+          <md-list-item class="md-3-line" ng-repeat = "flight in $mapCtrl.route.flights" >
+            <div class="md-list-item-text" layout="column">
+              <h3>From : {{flight.origin}}</h3>
+              <h3>To : {{flight.destination}}</h3>
+              <p>Total Air Time : {{flight.flightTime}} hour/s</p>
+              <md-divider ></md-divider>
+            </div>
+          </md-list-item>
+          <md-divider ></md-divider>
+      </md-list flex>
+  </md-content>
+
+
 </div>

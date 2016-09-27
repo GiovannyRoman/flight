@@ -54,4 +54,12 @@ public class Flight {
 		this.offset = offset;
 	}
 
+	@Override
+	public String toString() {
+		return "Flight [origin=" + origin + ", destination=" + destination + ", flightTime=" + flightTime + ", offset="
+				+ offset + "]";
+	}
+	
+	
+
 }

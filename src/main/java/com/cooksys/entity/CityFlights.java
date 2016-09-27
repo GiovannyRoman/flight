@@ -69,7 +69,7 @@ public class CityFlights {
 		for (Flight fli : flit) {
 			if (start.equals(fli.getOrigin()) && end.equals(fli.getDestination()) && fli.getOffset() > layover) {
 				possible.add(fli);
-	
+
 			}
 		}
 		return possible;
@@ -94,29 +94,14 @@ public class CityFlights {
 		for (List<Flight> fli : prev) {
 			for (Flight flig : next) {
 				Flight temp = fli.get(fli.size() - 1);
-				if (flig.getOffset() > getLayover(fli) && !checkVisited(fli, flig)
-						&& temp.getDestination().equals(flig.getOrigin()) && !temp.getDestination().equals(end)) {
+				if (!checkVisited(fli, flig) && temp.getDestination().equals(flig.getOrigin())
+						&& !temp.getDestination().equals(end)) {
 					fli.add(flig);
 					route.add(fli);
 				}
 			}
 		}
 		return route;
-	}
-
-	public long getLayover(List<Flight> flights) {
-		long current_layover = 0;
-		int curr = 0;
-		if (flights.size() == 1) {
-			return current_layover = flights.get(curr).getOffset() + flights.get(curr).getFlightTime();
-		} else {
-			for (int i = 1; i <= flights.size() - 1; i++) {
-				current_layover = flights.get(i).getOffset() - flights.get(curr).getFlightTime()
-						- flights.get(curr).getOffset();
-				curr = i;
-			}
-			return current_layover;
-		}
 	}
 
 	public boolean checkVisited(List<Flight> flights, Flight visited) {
@@ -126,20 +111,6 @@ public class CityFlights {
 			}
 		}
 		return false;
-	}
-
-	public List<List<Flight>> findAllPaths(List<Location> locations, List<Flight> allPossibleFlights, String start,
-			String end) {
-		List<CityFlights> map = this.makeRoutes(locations, allPossibleFlights);
-		List<List<Flight>> allRoutes = new ArrayList<List<Flight>>();
-
-		if(this.getCityFlight(start,map).getFlights() !=null){
-			allRoutes.add(this.getCityFlight(start,map).getFlights());
-			for(List<Flight> fli : allRoutes){
-				
-			}
-		}
-		return allRoutes;
 	}
 
 }
