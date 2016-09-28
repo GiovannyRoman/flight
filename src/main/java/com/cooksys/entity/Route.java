@@ -34,6 +34,19 @@ public class Route {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User owner;
 
+	public Route() {
+		super();
+	}
+
+	public Route(List<SaveFlight> flights, String origin, String destination, long flightTime, long layovertime) {
+		super();
+		this.flights = flights;
+		this.origin = origin;
+		this.destination = destination;
+		this.flightTime = flightTime;
+		this.layovertime = layovertime;
+	}
+
 	public long getId() {
 		return id;
 	}

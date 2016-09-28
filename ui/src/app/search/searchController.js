@@ -4,7 +4,8 @@ export default class SearchController {
   constructor ($stateParams, $scope, $log, searchService, $interval) {
     var ctrl = this
     ctrl.routes
-    ctrl.origin = $stateParams.origin
+
+    ctrl.origin = $stateParams.start
     ctrl.destination = $stateParams.destination
 
     ctrl.save = function (route) {
@@ -12,7 +13,8 @@ export default class SearchController {
     }
 
     $scope.getPaths = function () {
-      searchService.getPath($stateParams.origin, $stateParams.destination).then(function (paths) {
+      searchService.getPaths(ctrl.origin, ctrl.destination).then(function (paths) {
+        console.log(paths.data)
         ctrl.routes = paths.data
       })
     }

@@ -6,7 +6,7 @@ export default class MapService {
     this.$http = $http
 
     this.getPaths = function (origin, destination) {
-      return this.$http.get(apiUrl)
+      return this.$http.get(apiUrl + '/flights/' + origin + '/' + destination)
     }
 
     this.save = function (username, route) {
