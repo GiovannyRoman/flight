@@ -38,34 +38,37 @@ public class FlightService {
 		return token;
 	}
 
-	public void getnewPath(List<List<Flight>> token, List<Flight> currentTaken, List<Flight> allFlights,
+	public List<Flight> getnewPath(List<List<Flight>> token, List<Flight> currentTaken, List<Flight> allFlights,
 			String starting, String ending, long offset) {
-		for (Flight fli : allFlights) {
-			// found flight with start->end and made it in time
-			if (fli.getOrigin().equals(starting) && fli.getDestination().equals(ending) && offset < fli.getOffset()) {
-				
-				System.out.println(token.contains(currentTaken));
-
-				// found new path
-				if (!token.contains(currentTaken)) {
-					token.add(currentTaken);
-					currentTaken.remove(fli);
-					// did not find new path
-				} else {
-					currentTaken.remove(fli);
-				}
-
-				// found a flight with same Start and can make it in time
+		
+		List<Flight> possibleFlights = new ArrayList<Flight>();
+		
+		if(starting.equals(ending)){
+			return currentTaken;
+		}
+		
+		for(Flight flight : allFlights){
+			if(flight.getOrigin().equals(starting) && offset < flight.getOffset()){
+				possibleFlights.add(flight);
 			}
 		}
-		// found a flight with same Start and can make it in time
-		for (Flight fli : allFlights) {
-			if (fli.getOrigin().equals(starting) && fli.getOffset() > offset && fli.getDestination().equals(ending)) {
-				currentTaken.add(fli);
-				getnewPath(token, currentTaken, allFlights, fli.getDestination(), ending,
-						fli.getOffset() + fli.getFlightTime() + 1);
+		if(possibleFlights.isEmpty()){
+			return null;
+		}else {
+			for(Flight fligh :possibleFlights){
+				List<Flight> fli = new ArrayList<Flight>();
+				if(currentTaken.isEmpty()){
+					fli.add(fligh);
+					token.add(getnewPath(token,fli,allFlights,fligh.getDestination(),ending,fligh.getFlightTime()+fligh.getOffset()+1));
+				}else{
+					for(Flight taverse: currentTaken){
+						fli.add(taverse);
+					}
+					fli.add(fligh);
+					token.add(getnewPath(token,fli,allFlights,fligh.getDestination(),ending,fligh.getFlightTime()+fligh.getOffset()+1));
+				}	
 			}
+			return token.get(token.size()-1);	
 		}
 	}
-
 }
