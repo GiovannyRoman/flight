@@ -4,6 +4,7 @@ export default class SearchController {
   constructor ($stateParams, $scope, $log, searchService, $interval) {
     var ctrl = this
     ctrl.routes
+    ctrl.airTime = []
 
     ctrl.origin = $stateParams.start
     ctrl.destination = $stateParams.destination
@@ -17,6 +18,17 @@ export default class SearchController {
         console.log(paths.data)
         ctrl.routes = paths.data
       })
+    }
+
+    ctrl.findAir = function () {
+      for (let i = 0; i < ctrl.routes.length; i++) {
+        let route = ctrl.routes[i]
+        let time = 0
+        for (let j = 0; i < route.length; j++) {
+          time = route[j].flightTime
+        }
+        ctrl.airTime.push(time)
+      }
     }
 
     $scope.intervalPromise = $interval(function () {
