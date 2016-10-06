@@ -18,7 +18,7 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	@OneToMany(mappedBy = "owner" ,fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "owner" ,fetch=FetchType.EAGER,cascade = CascadeType.ALL)
 	private List<Route> routes;
 	
 	public long getId() {

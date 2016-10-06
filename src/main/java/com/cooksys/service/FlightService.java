@@ -1,7 +1,9 @@
 package com.cooksys.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -26,13 +28,13 @@ public class FlightService {
 
 	// The fixedDelay parameter determines how often a new day is generated as
 	// expressed in milliseconds
-	@Scheduled(fixedDelay = 50000000)
+	@Scheduled(fixedDelay = 5000)
 	private void refreshFlights() {
 		flightList = generator.generateNewFlightList();
 	}
 
-	public List<List<Flight>> findPaths(String start, String end) {
-		List<List<Flight>> token = new ArrayList<List<Flight>>();
+	public Set<List<Flight>> findPaths(String start, String end) {
+		Set<List<Flight>> token = new HashSet<List<Flight>>();
 		long offset = -1;
 		List<Flight> allFlight = getDailyFlightList();
 		List<Flight> init = new ArrayList<Flight>();
@@ -42,8 +44,9 @@ public class FlightService {
 
 	public List<Route> getAllRoutes(String start, String end) {
 
-		List<List<Flight>> allPaths = this.findPaths(start, end);
+		Set<List<Flight>> allPaths = this.findPaths(start, end);
 		List<Route> allRoute = new ArrayList<Route>();
+		long id = 0;
 		for (List<Flight> fli : allPaths) {
 			if (fli != null) {
 				long flightTime = 0;
@@ -51,7 +54,7 @@ public class FlightService {
 				List<SaveFlight> flight = new ArrayList<SaveFlight>();
 				for (Flight fight : fli) {
 					flightTime += fight.getFlightTime();
-					flight.add(new SaveFlight(fight.getOrigin(), fight.getDestination(), fight.getFlightTime(),
+					flight.add(new SaveFlight(id++,fight.getOrigin(), fight.getDestination(), fight.getFlightTime(),
 							fight.getOffset()));
 				}
 				allRoute.add(new Route(flight, start, end, flightTime, layoverTime));
@@ -73,7 +76,7 @@ public class FlightService {
 		}
 	}
 
-	public List<Flight> getnewPath(List<List<Flight>> token, List<Flight> currentTaken, List<Flight> allFlights,
+	public List<Flight> getnewPath(Set<List<Flight>> token, List<Flight> currentTaken, List<Flight> allFlights,
 			String starting, String ending, long offset) {
 
 		List<Flight> possibleFlights = new ArrayList<Flight>();

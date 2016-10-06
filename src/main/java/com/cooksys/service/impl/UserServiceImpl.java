@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cooksys.entity.Route;
+import com.cooksys.entity.SaveFlight;
 import com.cooksys.entity.User;
+import com.cooksys.repository.RouteRepository;
+import com.cooksys.repository.SaveFlightRepository;
 import com.cooksys.repository.UserRepository;
 import com.cooksys.service.UserService;
 
@@ -14,11 +17,15 @@ import com.cooksys.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository repo;
+	private final RouteRepository routeRepo;
+	private final SaveFlightRepository saveFlightRepo;
 
 	@Autowired
-	public UserServiceImpl(UserRepository repo) {
+	public UserServiceImpl(UserRepository repo,RouteRepository routeRepo,SaveFlightRepository saveFlightRepo) {
 		super();
+		this.routeRepo = routeRepo;
 		this.repo = repo;
+		this.saveFlightRepo = saveFlightRepo;
 	}
 
 	@Override
@@ -46,8 +53,13 @@ public class UserServiceImpl implements UserService {
 				currentUser = us;
 			}
 		}
+		List<SaveFlight> flights = route.getFlights();
+		for(SaveFlight fligh: flights){
+			fligh.setRoute(route);
+		}
+		route.setOwner(currentUser);
 		currentUser.getRoutes().add(route);
-		this.repo.save(currentUser);
+		this.repo.saveAndFlush(currentUser);
 		return route;
 	}
 

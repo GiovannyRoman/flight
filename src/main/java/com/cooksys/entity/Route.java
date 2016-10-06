@@ -14,7 +14,7 @@ public class Route {
 	@GeneratedValue
 	private long id;
 
-	@OneToMany(mappedBy = "route", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "route", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private List<SaveFlight> flights;
 
 	@Column(name = "origin")

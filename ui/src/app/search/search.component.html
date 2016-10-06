@@ -12,16 +12,18 @@
       <md-list flex>
         <md-subheader class="md-no-sticky">Flights Currently Available from {{searchCtrl.origin}} To {{searchCtrl.destination}}</md-subheader>
         <md-divider ></md-divider>
-          <md-list-item class="md-3-line" ng-repeat = "route in searchCtrl.routes" >
-            <md-list-item class="md-3-line" ng-repeat = "flight in route" >
-            <div class="md-list-item-text" layout="column">
-              <h3>From : {{flight.origin}}</h3>
-              <h3>To : {{flight.destination}}</h3>
-              <p>Departing At : {{flight.offset}}:00</p>
-              <p>Estimated Air Time : {{flight.flightTime}} hour/s</p>
-              <md-divider ></md-divider>
-            </div>
+          <md-list-item class="md-3-line" ng-repeat = "route in searchCtrl.routes track by $index" >
+            <div ng-click = "searchCtrl.save(route)">
+              <md-list-item class="md-3-line" ng-repeat = "flight in route" >
+                <div class="md-list-item-text" layout="column">
+                  <h3>From : {{flight.origin}}</h3>
+                  <h3>To : {{flight.destination}}</h3>
+                  <p>Departing At : {{flight.offset}}:00</p>
+                  <p>Estimated Air Time : {{flight.flightTime}} hour/s</p>
+                  <md-divider ></md-divider>
+                </div>
             </md-list-item>
+          </div>
           </md-list-item>
       </md-list flex>
   </md-content>

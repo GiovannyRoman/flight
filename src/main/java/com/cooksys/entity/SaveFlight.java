@@ -36,8 +36,9 @@ public class SaveFlight {
 		super();
 	}
 
-	public SaveFlight(String origin, String destination, long flightTime, long offset) {
+	public SaveFlight(long id,String origin, String destination, long flightTime, long offset) {
 		super();
+		this.id = id;
 		this.origin = origin;
 		this.destination = destination;
 		this.flightTime = flightTime;
@@ -75,5 +76,14 @@ public class SaveFlight {
 	public void setOffset(long offset) {
 		this.offset = offset;
 	}
+
+	public Route getRoute() {
+		return route;
+	}
+
+	public void setRoute(Route route) {
+		this.route = route;
+	}
+	
 
 }

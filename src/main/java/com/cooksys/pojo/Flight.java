@@ -2,6 +2,7 @@ package com.cooksys.pojo;
 
 public class Flight {
 
+
 	// Name of city where flight originates
 	private String origin;
 
@@ -46,6 +47,7 @@ public class Flight {
 		this.offset = offset;
 	}
 
+
 	public Flight(String origin, String destination, long flightTime, long offset) {
 		super();
 		this.origin = origin;
@@ -59,7 +61,5 @@ public class Flight {
 		return "Flight [origin=" + origin + ", destination=" + destination + ", flightTime=" + flightTime + ", offset="
 				+ offset + "]";
 	}
-	
-	
 
 }
