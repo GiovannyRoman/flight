@@ -5,10 +5,6 @@ export default class SearchService {
   constructor ($http) {
     this.$http = $http
 
-    this.getPaths = function (origin, destination) {
-      return this.$http.get(apiUrl + '/flights/' + origin + '/' + destination)
-    }
-
     this.getRoute = function (origin, destination) {
       return this.$http.get(apiUrl + '/flights/route/' + origin + '/' + destination)
     }

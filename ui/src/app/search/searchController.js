@@ -1,22 +1,20 @@
 
 export default class SearchController {
   /* @ngInject */
-  constructor ($stateParams, $scope, $log, searchService, $interval) {
+  constructor ($stateParams, $scope, $log, searchService, $interval,$state) {
     var ctrl = this
     ctrl.routes
-    ctrl.airTime = []
 
     ctrl.origin = $stateParams.start
     ctrl.destination = $stateParams.destination
 
     ctrl.save = function (route) {
-
-      console.log(route)
       searchService.save($stateParams.username, route)
+      $state.go('user', {username: $stateParams.username})
     }
 
     $scope.getRoute = function () {
-      searchService.getPaths(ctrl.origin, ctrl.destination).then(function (paths) {
+      searchService.getRoute(ctrl.origin, ctrl.destination).then(function (paths) {
         console.log(paths.data)
         ctrl.routes = paths.data
       })
