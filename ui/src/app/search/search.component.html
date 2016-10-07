@@ -12,8 +12,8 @@
     <md-list flex>
       <md-subheader class="md-no-sticky">Flights Currently Available from {{searchCtrl.origin}} To {{searchCtrl.destination}}. Click to Book Flight.</md-subheader>
         <md-divider ></md-divider>
-        <div class="md-3-line" ng-repeat = "route in searchCtrl.routes track by $index" ng-click = "searchCtrl.save(route)" ng-hide = "route == null" flex>
-            <md-list-item class="md-3-line" ng-repeat = "flight in route.flights" ng-hide = "flight == null" >
+        <md-list-item class="md-3-line" ng-repeat = "route in searchCtrl.routes track by $index" ng-click = "searchCtrl.save(route)" ng-hide = "route == null" flex>
+            <div ng-repeat = "flight in route.flights" ng-hide = "flight == null" >
               <div class="md-list-item-text" layout="column">
                   <h3>From : {{flight.origin}}</h3>
                   <h3>To : {{flight.destination}}</h3>
