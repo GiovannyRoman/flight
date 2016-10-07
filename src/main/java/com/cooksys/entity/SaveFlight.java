@@ -30,13 +30,11 @@ public class SaveFlight {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Route route;
 
-	
-	
 	public SaveFlight() {
 		super();
 	}
 
-	public SaveFlight(long id,String origin, String destination, long flightTime, long offset) {
+	public SaveFlight(long id, String origin, String destination, long flightTime, long offset) {
 		super();
 		this.id = id;
 		this.origin = origin;
@@ -44,7 +42,7 @@ public class SaveFlight {
 		this.flightTime = flightTime;
 		this.offset = offset;
 	}
-	
+
 	public String getOrigin() {
 		return origin;
 	}
@@ -84,6 +82,5 @@ public class SaveFlight {
 	public void setRoute(Route route) {
 		this.route = route;
 	}
-	
 
 }

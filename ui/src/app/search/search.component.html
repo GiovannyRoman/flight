@@ -1,20 +1,20 @@
-<div layout="column" layout-fill class = "form" >
-  <md-toolbar layout = "row">
-    <div layout = "row" flex>
-      <span class="md-display-3">Flight Reservation</span>
+<md-toolbar layout = "row">
+  <div layout = "row" flex>
+    <span class="md-display-3">Flight Reservation</span>
 
       <!-- fill up the space between left and right area -->
-      <span flex></span>
-    </div>
-  </md-toolbar>
+    <span flex></span>
+  </div>
+</md-toolbar>
 
-  <md-content>
-      <md-list flex>
-        <md-subheader class="md-no-sticky">Flights Currently Available from {{searchCtrl.origin}} To {{searchCtrl.destination}}</md-subheader>
+
+<md-content>
+    <md-list flex>
+      <md-subheader class="md-no-sticky">Flights Currently Available from {{searchCtrl.origin}} To {{searchCtrl.destination}}. Click to Book Flight.</md-subheader>
         <md-divider ></md-divider>
-          <md-list-item class="md-3-line" ng-repeat = "route in searchCtrl.routes track by $index" ng-click = "searchCtrl.save(route)" ng-hide = "route == null">
-              <md-list-item class="md-3-line" ng-repeat = "flight in route.flights" ng-hide = "flight == null" >
-                <div class="md-list-item-text" layout="column">
+        <div class="md-3-line" ng-repeat = "route in searchCtrl.routes track by $index" ng-click = "searchCtrl.save(route)" ng-hide = "route == null" flex>
+            <md-list-item class="md-3-line" ng-repeat = "flight in route.flights" ng-hide = "flight == null" >
+              <div class="md-list-item-text" layout="column">
                   <h3>From : {{flight.origin}}</h3>
                   <h3>To : {{flight.destination}}</h3>
                   <p>Departing At : {{flight.offset}}:00</p>
@@ -22,7 +22,6 @@
                   <md-divider ></md-divider>
                 </div>
             </md-list-item>
-          </md-list-item>
+          </div>
       </md-list flex>
   </md-content>
-</div>
