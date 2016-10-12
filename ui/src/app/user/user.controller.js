@@ -1,8 +1,8 @@
 
 export default class UserController {
   /* @ngInject */
-  constructor ($log, $scope, $interval, userService, $state, $stateParams) {
-    $log.debug('UserController is made')
+  constructor ( $scope, $interval, userService, $state, $stateParams) {
+
     var ctrl = this
     ctrl.user
 
@@ -16,21 +16,15 @@ export default class UserController {
       $state.go('search', {username: ctrl.user.username, start: origin, destination: destination})
     }
 
-    ctrl.setRoute = function (route) {
+    ctrl.viewRoute = function (route) {
       userService.route = route
       $state.go('map', {routeid: route.id})
     }
 
-    ctrl.flights
-    $scope.refresh = function () {
-      userService.getFlights().then(function (flights) {
-        ctrl.flights = flights.data
-      })
-    }
     $scope.intervalPromise = $interval(function () {
-      $scope.refresh()
-    }, 2500)
-    $scope.refresh()
+      $scope.getUser()
+    }, 5000)
+    
     $scope.getUser()
   }
 }

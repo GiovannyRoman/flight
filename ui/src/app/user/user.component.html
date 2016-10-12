@@ -27,22 +27,7 @@
     </div>
   </md-toolbar>
 
-  <md-content>
-      <md-list flex>
-        <md-subheader class="md-no-sticky">Flights Currently Available</md-subheader>
-        <md-divider ></md-divider>
-          <md-list-item class="md-3-line" ng-repeat = "flight in userCtrl.flights" >
-            <div class="md-list-item-text" layout="column">
-              <h3>From : {{flight.origin}}</h3>
-              <h3>To : {{flight.destination}}</h3>
-              <p>Departing At : {{flight.offset}}:00</p>
-              <p>Estimated Air Time : {{flight.flightTime}} hour/s</p>
-              <md-divider ></md-divider>
-            </div>
-            <md-divider ></md-divider>
-          </md-list-item>
-      </md-list flex>
-  </md-content>
+  <schedule-app></schedule-app>
 </div>
 <md-divider ></md-divider>
 <md-toolbar layout="row" class="md-hue-3">
@@ -54,7 +39,7 @@
     <md-list flex>
       <md-subheader class="md-no-sticky">click to view map</md-subheader>
         <md-divider ></md-divider>
-        <md-list-item class="md-3-line" ng-click="userCtrl.setRoute(route)" ng-repeat = "route in userCtrl.user.routes" >
+        <md-list-item class="md-3-line" ng-click="userCtrl.viewRoute(route)" ng-repeat = "route in userCtrl.user.routes" >
           <div class="md-list-item-text" layout="column">
             <h3>From : {{route.origin}}</h3>
             <h3>To : {{route.destination}}</h3>

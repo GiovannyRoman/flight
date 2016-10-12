@@ -33,6 +33,7 @@ public class FlightService {
 		flightList = generator.generateNewFlightList();
 	}
 
+	
 	public Set<List<Flight>> findPaths(String start, String end) {
 		Set<List<Flight>> token = new HashSet<List<Flight>>();
 		long offset = -1;
