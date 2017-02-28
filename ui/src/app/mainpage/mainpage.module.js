@@ -1,12 +1,11 @@
 import mainpageApp from './mainpage.component.js'
-import mainPageService from '../service/mainPageService.js'
-import schedule from '../schedule/schedule.module.js'
+import mainpageService from './mainpage_service/mainpageService.js'
 
 export default
   angular
-    .module('mainpageApp', [schedule])
+    .module('mainpageApp', [])
     .component('mainpageApp', mainpageApp)
-    .service('mainPageService', mainPageService)
+    .service('mainpageService', mainpageService)
     .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
       $urlRouterProvider.otherwise('/')
       $stateProvider

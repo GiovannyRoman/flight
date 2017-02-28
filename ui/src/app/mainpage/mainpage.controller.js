@@ -1,14 +1,28 @@
+var bcrypt = require('bcryptjs')
+
 export default class MainController {
   /* @ngInject */
-  constructor ($log, mainPageService, $scope, $interval) {
-    $log.debug('mainController is a go.')
+  constructor ($log, mainpageService, $scope, $interval, $state) {
     var ctrl = this
     ctrl.flights
+    ctrl.user
+
     $scope.refresh = function () {
-      mainPageService.getFlights().then(function (flights) {
-        ctrl.flights = flights.data
+      mainpageService.getFlights().then(function (flights) {
+        ctrl.flights = flights
       })
     }
+
+    ctrl.login = function () {
+      mainpageService.login(ctrl.user.username).then(function (data) {
+        bcrypt.compare(ctrl.user.password, data.password, function (err, res) {
+          if (res === true) {
+            $state.go('profile', {username: data.username})
+          }
+        })
+      })
+    }
+
     $scope.intervalPromise = $interval(function () {
       $scope.refresh()
     }, 1000)

@@ -23,7 +23,6 @@ public class Route {
 	@Column(name = "destination")
 	private String destination;
 
-	// How many hours flight is in the air
 	@Column(name = "TotalflightTime")
 	private long flightTime;
 	

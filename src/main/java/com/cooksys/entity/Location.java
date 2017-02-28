@@ -2,7 +2,6 @@ package com.cooksys.entity;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "Location")
 public class Location {

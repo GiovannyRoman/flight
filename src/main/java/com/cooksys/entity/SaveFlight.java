@@ -33,6 +33,14 @@ public class SaveFlight {
 	public SaveFlight() {
 		super();
 	}
+	
+	public SaveFlight(String origin, String destination, long flightTime, long offset) {
+		super();
+		this.origin = origin;
+		this.destination = destination;
+		this.flightTime = flightTime;
+		this.offset = offset;
+	}
 
 	public SaveFlight(long id, String origin, String destination, long flightTime, long offset) {
 		super();

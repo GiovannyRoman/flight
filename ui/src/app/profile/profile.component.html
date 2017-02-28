@@ -1,0 +1,112 @@
+<div layout="column" layout-fill class = "form" >
+  <md-toolbar layout = "row">
+    <div layout = "row" flex>
+      <span class="md-display-3">Flight Reservation</span>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+  <p>Welcome {{profileCtrl.user.username}}</p>
+  <md-divider ></md-divider>
+
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Flights Available">
+        <p>Click to book a flight</p>
+        <md-content class="md-padding">
+          <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+              <span>Flights</span>
+            </div>
+          </md-toolbar>
+          <md-list-item class="md-3-line" ng-repeat="flight in profileCtrl.flights" ng-click = "profileCtrl.bookSingleflight(flight)">
+            <div class="md-list-item-text" layout="column">
+              <h3>Flight Destination : {{flight.origin}}</h3>
+              <h4>Flight Origin : {{flight.destination}}</h4>
+              <p>Estimated Flight time : {{flight.flightTime}} hrs</p>
+              <p>Departure in : {{flight.offset}} hrs </p>
+            </div>
+          <md-divider ></md-divider>
+          </md-list-item>
+        </md-content>
+      </md-tab>
+
+
+      <md-tab label="history">
+        <md-content class="md-padding">
+          <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+              <span>Reserved Flights</span>
+            </div>
+          </md-toolbar>
+          <p> click to display flight path</p>
+          <div map-lazy-load="https://maps.google.com/maps/api/js">
+            <ng-map center="{{profileCtrl.center}}" zoom="{{profileCtrl.zoom}}">
+              <marker ng-repeat="mapMarker in profileCtrl.markers" position="{{mapMarker.position}}"></marker>
+              <shape
+                ng-repeat="mapPath in profileCtrl.paths"
+                name="polyline"
+                path="{{mapPath.path}}"
+                stroke-color="{{mapPath.strokeColor}}"
+                stroke-opacity="{{mapPath.strokeOpacity}}"
+                stroke-weight="{{mapPath.strokeWeight}}"
+                geodesic="{{mapPath.geodesic}}">
+              </shape>
+            </ng-map>
+          </div>
+          <md-list-item class="md-3-line"  ng-repeat = "route in profileCtrl.user.routes" ng-click = "profileCtrl.mapRoute(route)" >
+            <div class="md-list-item-text" layout="column">
+              <h3>From : {{route.origin}}</h3>
+              <h3>To : {{route.destination}}</h3>
+              <p>Total Air Time : {{route.flightTime}} hour/s</p>
+              <p>Total Layover Time : {{route.layovertime}} hour/s</p>
+              <md-divider ></md-divider>
+            </div>
+          </md-list-item>
+          <md-divider ></md-divider>
+        </md-content>
+      </md-tab>
+
+      <md-tab label="Search for flights">
+        <md-content class="md-padding">
+          <p>Select a Flight plan</p>
+          <div layout = "row">
+            <md-select ng-model="profileCtrl.origin" placeholder="select a origin" class="md-no-underline" required md-no-asterisk="true">
+              <div ng-repeat = "location in profileCtrl.locations">
+                <md-option value="{{location.city}}">{{location.city}}</md-option>
+              </div>
+            </md-select>
+            <md-select ng-model="profileCtrl.destination" placeholder="select a Destination" class="md-no-underline" required md-no-asterisk="true">
+              <div ng-repeat = "location in profileCtrl.locations">
+                <md-option value="{{location.city}}">{{location.city}}</md-option>
+              </div>
+            </md-select>
+            <md-button class="md-raised md-accent md-hue-3" ng-click = "profileCtrl.allPaths()" >
+              search
+            </md-button>
+          </div>
+          <div>
+            <md-toolbar layout="row" class="md-hue-3">
+              <div class="md-toolbar-tools">
+                <span>All Possible Flight Plans</span>
+              </div>
+            </md-toolbar>
+            <p> click to book flight plan</p>
+            <md-divider ></md-divider>
+            <md-list-item class="md-3-line" ng-repeat = "route in profileCtrl.flightplans track by $index" ng-hide = "route == null"  ng-click = "profileCtrl.save(route) "flex>
+              <div ng-repeat = "flight in route.flights" ng-hide = "flight == null" >
+                <div class="md-list-item-text" layout="column">
+                  <h3>From : {{flight.origin}}</h3>
+                  <h3>To : {{flight.destination}}</h3>
+                  <p>Departing At : {{flight.offset}}:00</p>
+                  <p>Estimated Air Time : {{flight.flightTime}} hour/s</p>
+                  <md-divider ></md-divider>
+                </div>
+              </div>
+            </md-list-item>
+          </div>
+        </md-content>
+
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

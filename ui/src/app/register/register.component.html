@@ -6,21 +6,26 @@
     </div>
   </md-toolbar>
 
-  <h1 layout="column" class="md-display-3">Create a new Account</h1>
-  <md-content layout="column" class ="md-padding">
-    <h3 layout="column" class="md-subhead">Enter a new username</h3>
-    <md-input-container class="input-text">
-      <label>Username</label>
-      <input name="Username" ng-model="registerCtrl.user.username" required md-maxlength="100" minlength="1" class="input-text">
-    </md-input-container>
-    <h3 layout="column" class="md-subhead">Enter a new password</h3>
-    <md-input-container class="input-text">
-      <label>Password</label>
-      <textarea name="password" ng-model="registerCtrl.user.password" required md-maxlength="100" minlength="1" class="input-text"></textarea>
+
+  <h1 layout="column" class="md-display-2">Create a new Account</h1>
+  <h3 layout="column" class="md-subhead">Enter a username</h3>
+    <md-input-container class="md-block">
+      <label>username</label>
+      <input required name="username" ng-model="registerCtrl.user.username">
+      <div ng-messages="loginForm.username.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
     </md-input-container>
 
-    <md-button class="md-raised md-primary" ng-click='registerCtrl.register()'>
-      submit
-    </md-button>
-  </md-content>
+  <h3 layout="column" class="md-subhead">Enter a password</h3>
+    <md-input-container class="md-block">
+      <label>password</label>
+      <input required type="password" name="password" ng-model="registerCtrl.user.password">
+      <div ng-messages="loginForm.password.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+    <div>
+      <md-button class="md-raised md-accent md-hue-3" ng-click = "registerCtrl.register()">Submit</md-button>
+    </div>
 </div>

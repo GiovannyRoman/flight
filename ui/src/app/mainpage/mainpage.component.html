@@ -4,17 +4,55 @@
       <span class="md-display-3">Flight Reservation</span>
       <span flex></span>
     </div>
-    <md-button class="md-raised md-primary" ui-sref="register" >
+    <md-button class="md-raised md-accent md-hue-3" ui-sref="register" >
       Create a new account
     </md-button>
-    <md-button class="md-raised md-primary" ui-sref = "login">
-      login
-    </md-button>
   </md-toolbar>
-  <md-toolbar layout="row" class="md-hue-3">
-    <div class="md-toolbar-tools">
-      <span>Flight list</span>
-    </div>
-  </md-toolbar>
-<schedule-app></schedule-app>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Flights Available">
+        <md-content class="md-padding">
+          <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+              <span>Flights</span>
+            </div>
+          </md-toolbar>
+          <md-list-item class="md-3-line" ng-repeat="flight in mainCtrl.flights">
+            <div class="md-list-item-text" layout="column">
+              <h3>Flight Destination : {{flight.origin}}</h3>
+              <h4>Flight Origin : {{flight.destination}}</h4>
+              <p>Estimated Flight time : {{flight.flightTime}} hrs</p>
+            </div>
+            <md-divider ></md-divider>
+          </md-list-item>
+        </md-content>
+      </md-tab>
+      <md-tab label="Login">
+        <md-content class="md-padding">
+          <div class= "center">
+            <h3>Enter your login information</h3>
+            <form name = "loginForm" class = "form">
+              <md-input-container class="md-block">
+                <label>username</label>
+                <input required name="username" ng-model="mainCtrl.user.username">
+                <div ng-messages="loginForm.username.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>password</label>
+                <input required type="password" name="password" ng-model="mainCtrl.user.password">
+                <div ng-messages="loginForm.password.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <div>
+                <md-button class="md-raised md-accent md-hue-3" ng-click = "mainCtrl.login()">Submit</md-button>
+              </div>
+            </form>
+          </div>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
 </div>

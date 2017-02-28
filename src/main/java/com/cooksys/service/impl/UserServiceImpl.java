@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import com.cooksys.entity.Route;
 import com.cooksys.entity.SaveFlight;
 import com.cooksys.entity.User;
-import com.cooksys.repository.RouteRepository;
-import com.cooksys.repository.SaveFlightRepository;
 import com.cooksys.repository.UserRepository;
 import com.cooksys.service.UserService;
 
@@ -17,15 +15,11 @@ import com.cooksys.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository repo;
-	private final RouteRepository routeRepo;
-	private final SaveFlightRepository saveFlightRepo;
 
 	@Autowired
-	public UserServiceImpl(UserRepository repo,RouteRepository routeRepo,SaveFlightRepository saveFlightRepo) {
+	public UserServiceImpl(UserRepository repo) {
 		super();
-		this.routeRepo = routeRepo;
 		this.repo = repo;
-		this.saveFlightRepo = saveFlightRepo;
 	}
 
 	@Override

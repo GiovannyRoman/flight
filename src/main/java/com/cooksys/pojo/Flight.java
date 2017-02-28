@@ -2,7 +2,6 @@ package com.cooksys.pojo;
 
 public class Flight {
 
-
 	// Name of city where flight originates
 	private String origin;
 

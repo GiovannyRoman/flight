@@ -3,7 +3,6 @@ package com.cooksys.entity;
 import java.util.List;
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "User",uniqueConstraints = @UniqueConstraint(columnNames = { "username" }))
 public class User {

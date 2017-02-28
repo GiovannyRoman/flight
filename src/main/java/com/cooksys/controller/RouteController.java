@@ -20,7 +20,6 @@ public class RouteController {
 
 	@Autowired
 	public RouteController(RouteService routeService) {
-		super();
 		this.routeService = routeService;
 	}
 	

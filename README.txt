@@ -1,17 +1,37 @@
-/------------------------------------------------------------------------------\
-|                                 Setup                                        |
-\------------------------------------------------------------------------------/
-1. In the application.properties file, change the username and password
-   to the database's username and password.
-2. Create a new schema with name "ftd_flight"
+# Flight
+Flight reservation web application written as a final assessment for the FastTrack'D program.
+Randomly generates flights at a given interval, allows registered users to search for
+direct and connecting flights between cities and book them. Flights include information about
+layovers, flight time and total duration of the trip and can be shown on a map.
+The registration and login system utilizes bcrypt on the front-end.
+Information about previously booked flights is presented on the users profile page.
 
-/------------------------------------------------------------------------------\
-|                         using the application                                |
-\------------------------------------------------------------------------------/
-The main page displays the current flights available and has option to create an
-account and login. when logged in, they are able to search a flight and displays
-the previous flights booked and current flights available. When clicking on a
-previous booked flight will take the user to a new page with a map of the flight
-and details about the flight. To book a flight, the user needs to search for a
-flight, then click on whatever flight they want to book. If there is no flight
-available, the screen will be blank. 
+## Getting Started
+
+* First clone the repository into a location you can easily access.
+* Import the existing Maven project into Eclipse (with Spring Tool Suite) or a similar Java IDE.
+* Set your postgreSQL username and password in "src\main\resources\application.properties".
+* Create the schema "ftd_flight" using pgAdmin.
+* In Eclipse run the Maven project as a Spring Boot Application.
+* You should now be able to visit the site on localhost at port 8000.
+
+### Prerequisities
+
+* Eclipse or a similar IDE
+* PostgreSQL and pgAdmin
+
+## Built With
+
+* Eclipse Neon
+* Maven
+* Spring Boot (Web, JPA and PostgreSQL)
+* AngularJS
+* Angular Material
+* Atom
+* Webpack
+
+## Author
+
+* Giovanny Roman
+* Michael Boren
+* Peter Zastoupil

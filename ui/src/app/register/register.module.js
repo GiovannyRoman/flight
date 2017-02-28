@@ -1,5 +1,5 @@
 import registerApp from './register.component.js'
-import registerService from '../service/registerService.js'
+import registerService from './register_service/registerService.js'
 
 export default
   angular
